@@ -56,7 +56,15 @@ export function Signup() {
     };
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_KEY}/auth/signup`, data);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/auth/signup`,
+        data,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          },
+        }
+      );
       if (res.data.success) {
         setMessage("Signup successful! Redirecting...");
         setTimeout(() => navigate("/signin"), 1500);

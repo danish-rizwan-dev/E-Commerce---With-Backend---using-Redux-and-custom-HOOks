@@ -12,10 +12,10 @@ export function Login() {
 
   useEffect(() => {
     if (isAuth) {
-     setTimeout(()=>{
-          console.log("navigated");
-          navigate("/homepage")
-        },1000)
+      setTimeout(() => {
+        console.log("navigated");
+        navigate("/homepage");
+      }, 1000);
     }
   });
 
@@ -50,10 +50,18 @@ export function Login() {
 
     setLoading(true);
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_KEY}/auth/signin`, {
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_KEY}/auth/signin`,
+        {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        },
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          },
+        }
+      );
 
       if (res.data.success) {
         setMessage("Login successful! Redirecting...");
@@ -62,9 +70,6 @@ export function Login() {
           type: ACTION_TYPES.updateIsAuth,
           payload: true,
         });
-        
-        
-          
       } else {
         throw new Error(res.data.message || "Login failed");
       }
