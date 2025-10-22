@@ -7,7 +7,10 @@ export function useFetch({ url, category }) {
     useEffect(() => {
         async function fetchData() {
             await axios.get(url, {
-                params: { category }
+                params: { category },
+                headers: {
+                    "ngrok-skip-browser-warning": true,
+                }
             })
                 .then((res) => {
                     console.log(data);
