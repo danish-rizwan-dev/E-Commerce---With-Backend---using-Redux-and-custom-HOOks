@@ -42,6 +42,7 @@ export function ProductsPage() {
         {
           headers: {
             Authorization: localStorage.getItem("token"),
+            "ngrok-skip-browser-warning": true,
           },
         }
       );
@@ -67,6 +68,7 @@ export function ProductsPage() {
     const updated = await axios.get(`${process.env.REACT_APP_API_KEY}/cartItems`, {
       headers: {
         Authorization: localStorage.getItem("token"),
+        "ngrok-skip-browser-warning": true,
       },
     });
 

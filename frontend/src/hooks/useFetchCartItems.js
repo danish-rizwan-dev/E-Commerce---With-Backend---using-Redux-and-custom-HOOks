@@ -16,6 +16,7 @@ export function useFetchCartItems({ url }) {
                 const response = await axios.get(url, {
                     headers: {
                         Authorization: token,
+                        "ngrok-skip-browser-warning": true,
                     },
                 });
 
